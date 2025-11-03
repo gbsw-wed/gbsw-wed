@@ -68,8 +68,6 @@ export default function LoginPage() {
               <p className="singupText" onClick={toggleSignup}>
                 이미 계정이 있으신가요?
               </p>
-              <p className="pwdText2">비밀번호 잊어버림</p>
-              <p className="idText2">아이디가 기억이 안남</p>
             </>
           ) : (
             <>
@@ -89,8 +87,6 @@ export default function LoginPage() {
               <p className="singupText" onClick={toggleSignup}>
                 회원가입이 필요하다면?
               </p>
-              <p className="pwdText">비밀번호 잊어버림</p>
-              <p className="idText">아이디가 기억이 안남</p>
             </>
           )}
         </form>
