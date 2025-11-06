@@ -8,15 +8,32 @@ import Pages404 from "./pages/Page404";
 import Preview from "./pages/Preview";
 
 function App() {
+  const [isSignup, setIsSignup] = useState(false);
   return (
     <>
       <Routes>
         <Route element={<Layout></Layout>}>
           <Route path="/" element={<MainPage></MainPage>}></Route>
-          <Route path="/notice" element={<PostPage></PostPage>}></Route>
+          <Route
+            path="/notice"
+            element={
+              <PostPage
+                isSignup={isSignup}
+                setIsSignup={setIsSignup}
+              ></PostPage>
+            }
+          ></Route>
           <Route path="/write" element={<div>게시글 작성 페이지</div>}></Route>
         </Route>
-        <Route path="/login" element={<LoginPage></LoginPage>}></Route>
+        <Route
+          path="/login"
+          element={
+            <LoginPage
+              isSignup={isSignup}
+              setIsSignup={setIsSignup}
+            ></LoginPage>
+          }
+        ></Route>
         <Route path="*" element={<Pages404></Pages404>}></Route>
       </Routes>
     </>

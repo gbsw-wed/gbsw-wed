@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import "./login.css";
 
-export default function LoginPage() {
-  const [isSignup, setIsSignup] = useState(false);
+export default function LoginPage({ isSignup, setIsSignup }) {
   const [fade, setFade] = useState(false);
 
   const [username, setUsername] = useState("");
@@ -27,7 +26,7 @@ export default function LoginPage() {
       }, 500);
       return () => clearTimeout(timeout);
     }
-  }, [fade, isSignup]);
+  }, [fade, isSignup, setIsSignup]);
 
   return (
     <div

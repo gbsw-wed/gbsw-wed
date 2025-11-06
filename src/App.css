@@ -21,7 +21,7 @@ body{
   width: 100vw;
   height: 100vw;
   background-color: #F0F0F0;
-    position: relative;
+  position: relative;
   overflow: hidden;
 }
 
@@ -156,7 +156,7 @@ a{
 
 .schoolImg{
   width: 95%;
-  height: 60%;
+  height: 62%;
   display: flex;
   justify-self: center;
 }
@@ -198,22 +198,6 @@ td{
 .popular,
 .recommend {
   transition: all 0.3s ease; 
-}
-
-.mainSchool:hover,
-.popular:hover,
-.recommend:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.25); 
-  background-color: #ffffff; 
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.mainSchool:hover .schoolImgTitle,
-.popular:hover .schoolImgTitle,
-.recommend:hover .schoolImgTitle {
-  background-color: #5cb390; 
-  transition: background-color 0.3s ease;
 }
 
 .mainContentTitle{

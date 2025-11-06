@@ -31,7 +31,7 @@ function NavarPage() {
             </Button>
           </Form>
           <Link to="/notice">
-            <Button className="noticeBtn">게시글 만들기</Button>
+            <Button className="noticeBtn">게시글 보기</Button>
           </Link>
           <Link to="/login">
             <Button className="loginBtn">로그인</Button>
