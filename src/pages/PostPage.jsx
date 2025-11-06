@@ -16,7 +16,9 @@ function PostPage({ setIsSignup }) {
               setIsSignup(false);
               navigate("/login");
             }}
-          ></button>
+          >
+            로그인
+          </button>
           <button
             onClick={() => {
               setIsSignup(true);
