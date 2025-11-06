@@ -92,3 +92,10 @@
   background-color: #7f7f7f;
 }
 
+.reading{
+  color: #3d3d3d;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-40%);
+}

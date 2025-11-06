@@ -1,4 +1,10 @@
 function PostPage() {
-  return <div>게시글 페이지 tq</div>;
+  return (
+    <div className="mainBg">
+      <div className="mainBgCircle1"></div>
+      <div className="mainBgCircle2"></div>
+      <p>게시글</p>
+    </div>
+  );
 }
 export default PostPage;

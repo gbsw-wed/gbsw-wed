@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+
+/* 전체 404 영역 */
+.page404-container {
+  background: #33cc99;
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* 중앙 내용 */
+.page404-content {
+  text-align: center;
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  z-index: 5;
+}
+
+.page404-number {
+  font-size: clamp(100px, 20vw, 220px);
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+
+.page404-title {
+  font-size: clamp(2rem, 5vw, 4em);
+  letter-spacing: 0.1em;
+  margin-top: 0.5em;
+}
+
+.page404-subtitle {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  margin-top: 0.5em;
+}
+
+/* ✅ 버튼 스타일 (Link) */
+.page404-btn {
+  background-color: #fff;
+  color: #33cc99;
+  font-size: 1.2rem;
+  text-decoration: none;
+  padding: 10px 30px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-top: 1.5rem;
+  transition: all 0.25s ease;
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.page404-btn:hover {
+  background-color: #eafff4;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.page404-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* 구분선 */
+.page404-line {
+  border: none;
+  border-top: 5px solid #fff;
+  margin: 1rem auto;
+  width: 60%;
+  position: relative;
+}
+
+.page404-line::after {
+  content: '•';
+  position: absolute;
+  top: -0.6em;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #33cc99;
+  font-size: 2em;
+  line-height: 1;
+  padding: 0 0.3em;
+}
+
+/* ☁️ 구름 영역 */
+#page404-clouds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.page404-cloud {
+  width: 350px;
+  height: 120px;
+  background: #fff;
+  border-radius: 100px;
+  position: absolute;
+  opacity: 0.8;
+  filter: blur(1px);
+  animation: page404-moveclouds 25s linear infinite;
+}
+
+.page404-cloud::before,
+.page404-cloud::after {
+  content: '';
+  position: absolute;
+  background: #fff;
+  border-radius: 100px;
+}
+
+.page404-cloud::before {
+  width: 180px;
+  height: 180px;
+  top: -90px;
+  right: 50px;
+}
+
+.page404-cloud::after {
+  width: 100px;
+  height: 100px;
+  top: -50px;
+  left: 50px;
+}
+
+/* 각 구름별 위치 */
+.page404-x1 {
+  top: 10%;
+  left: 10%;
+  transform: scale(0.4);
+  animation-duration: 18s;
+}
+
+.page404-x1_5 {
+  top: 15%;
+  left: 40%;
+  transform: scale(0.5);
+  animation-duration: 22s;
+}
+
+.page404-x2 {
+  top: 30%;
+  left: 70%;
+  transform: scale(0.6);
+  animation-duration: 26s;
+}
+
+.page404-x3 {
+  bottom: 20%;
+  left: 50%;
+  transform: scale(0.7);
+  animation-duration: 30s;
+}
+
+.page404-x4 {
+  bottom: 10%;
+  left: 20%;
+  transform: scale(0.6);
+  animation-duration: 28s;
+}
+
+.page404-x5 {
+  top: 50%;
+  right: 10%;
+  transform: scale(0.5);
+  animation-duration: 24s;
+}
+
+/* 구름 애니메이션 */
+@keyframes page404-moveclouds {
+  0% {
+    transform: translateX(100vw) scale(0.5);
+  }
+  100% {
+    transform: translateX(-100vw) scale(0.5);
+  }
+}
+
+/* 📱 반응형 */
+@media (max-width: 600px) {
+  .page404-cloud {
+    width: 200px;
+    height: 70px;
+  }
+
+  .page404-number {
+    font-size: 120px;
+  }
+
+  .page404-btn {
+    width: 70%;
+    font-size: 1rem;
+  }
+}

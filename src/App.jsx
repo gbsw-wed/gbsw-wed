@@ -4,6 +4,8 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./pages/Layout";
 import PostPage from "./pages/PostPage";
+import Pages404 from "./pages/Page404";
+import Preview from "./pages/Preview";
 
 function App() {
   return (
@@ -12,8 +14,10 @@ function App() {
         <Route element={<Layout></Layout>}>
           <Route path="/" element={<MainPage></MainPage>}></Route>
           <Route path="/notice" element={<PostPage></PostPage>}></Route>
+          <Route path="/write" element={<div>게시글 작성 페이지</div>}></Route>
         </Route>
         <Route path="/login" element={<LoginPage></LoginPage>}></Route>
+        <Route path="*" element={<Pages404></Pages404>}></Route>
       </Routes>
     </>
   );
@@ -24,7 +28,6 @@ function MainPage() {
     <div className="mainBg">
       <div className="mainBgCircle1"></div>
       <div className="mainBgCircle2"></div>
-
       <div className="main-contemt">
         <div className="mainSchool">
           <div className="contentTitle">학교 소개</div>
@@ -241,12 +244,28 @@ function MainPage() {
 
         <div className="popular">
           <div className="contentTitle">인기 검색어</div>
-          <div className="content"></div>
+          <div className="content2">
+            <Preview></Preview>
+            <Preview></Preview>
+            <Preview></Preview>
+            <Preview></Preview>
+            <Preview></Preview>
+            <Preview></Preview>
+            <Preview></Preview>
+          </div>
         </div>
 
         <div className="recommend">
           <div className="contentTitle">추천 검색어</div>
-          <div className="content"></div>
+          <div className="content2">
+            <Preview></Preview>
+            <Preview></Preview>
+            <Preview></Preview>
+            <Preview></Preview>
+            <Preview></Preview>
+            <Preview></Preview>
+            <Preview></Preview>
+          </div>
         </div>
       </div>
     </div>

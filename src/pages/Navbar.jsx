@@ -27,7 +27,7 @@ function NavarPage() {
               aria-label="Search"
             />
             <Button variant="outline-success" className="searchBtn">
-              🔍
+              <i className="fa-solid fa-magnifying-glass reading"></i>
             </Button>
           </Form>
           <Link to="/notice">

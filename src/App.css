@@ -100,6 +100,19 @@ a{
   margin-top: 10px;
 }
 
+.content2{
+  width: 95%;
+  height: 90%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  padding: 10px;
+  transform: translate(-50%,-50%);
+  overflow-y: scroll;
+  margin-top: 10px;
+}
+
+
 .popular{
   position: relative;
   width: 32vw;
@@ -143,7 +156,7 @@ a{
 
 .schoolImg{
   width: 95%;
-  height: 50%;
+  height: 60%;
   display: flex;
   justify-self: center;
 }

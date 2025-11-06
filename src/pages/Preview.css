@@ -1,0 +1,36 @@
+*{
+  margin: 0;
+}
+
+.preview{
+  display: flex;
+  justify-self: center;
+  width: 90%;
+  height: 4vw;
+  border-bottom:1px solid black ;
+  position: relative;
+}
+
+.preview-title{
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translate(0,-50%);
+}
+
+.preview-about{
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 80%;
+  transform: translate(0,-50%);
+}
+
+.preview-title-h4{
+  margin: 0;
+}
+
+.preview-about-p{
+  margin: 0;
+}
