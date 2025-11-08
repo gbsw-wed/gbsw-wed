@@ -1,17 +1,26 @@
 import "./Preview.css";
+import React from "react";
+import { useState } from "react";
+import data from "./data.js";
 
 function Preview() {
+  let [Post, setPost] = useState(data);
   return (
-    <div className="preview">
-      <div className="preview-title">
-        <p className="preview-title-p">제목</p>
-        <span className="preview-title-span">댓글수</span>
-      </div>
-      <div className="preview-about">
-        <p className="preview-about-p"># 분류</p>
-        <p className="preview-about-p">최근 수정일</p>
-      </div>
+    <div>
+      {Post.slice(0, 5).map((item, index) => (
+        <div className="preview">
+          <div className="preview-title">
+            <p className="preview-title-p">{item.title}</p>
+            <span className="preview-title-span">{item.comments}</span>
+          </div>
+          <div className="preview-about">
+            <p className="preview-about-p">{item.category}</p>
+            <p className="preview-about-p">{item.lastEdited}</p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
+
 export default Preview;

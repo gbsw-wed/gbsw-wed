@@ -6,6 +6,7 @@ import Layout from "./pages/Layout";
 import PostPage from "./pages/PostPage";
 import Pages404 from "./pages/Page404";
 import Preview from "./pages/Preview";
+import data from "./pages/data.js";
 
 function App() {
   const [isSignup, setIsSignup] = useState(false);
@@ -263,24 +264,12 @@ function MainPage() {
           <div className="contentTitle">인기 검색어</div>
           <div className="content2">
             <Preview></Preview>
-            <Preview></Preview>
-            <Preview></Preview>
-            <Preview></Preview>
-            <Preview></Preview>
-            <Preview></Preview>
-            <Preview></Preview>
           </div>
         </div>
 
         <div className="recommend">
           <div className="contentTitle">추천 검색어</div>
           <div className="content2">
-            <Preview></Preview>
-            <Preview></Preview>
-            <Preview></Preview>
-            <Preview></Preview>
-            <Preview></Preview>
-            <Preview></Preview>
             <Preview></Preview>
           </div>
         </div>

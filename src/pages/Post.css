@@ -1,0 +1,13 @@
+  .post-list {
+  margin-top: 5px;
+}
+
+.post-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+  transition: background 0.2s;
+  text-align: center;
+}
