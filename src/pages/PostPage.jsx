@@ -1,6 +1,7 @@
 import "./PostPage.css";
 import { useNavigate } from "react-router-dom";
 import Post from "./Post.jsx";
+import { Link } from "react-router-dom";
 
 function PostPage({ setIsSignup }) {
   const navigate = useNavigate();
@@ -36,7 +37,9 @@ function PostPage({ setIsSignup }) {
       </div>
       <div className="postPage-write">
         <div className="contentTitle">게시글 작성하기</div>
-        <button className="postPage-write-btn">게시글 작성하기</button>
+        <Link to="/write">
+          <button className="postPage-write-btn">게시글 작성하기</button>
+        </Link>
       </div>
       <img className="postPage-img" src="/images/gbs-mascot.png" alt="" />
       <div className="postPage-bg">
