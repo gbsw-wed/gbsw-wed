@@ -8,7 +8,7 @@ function Preview() {
   return (
     <div>
       {Post.slice(0, 5).map((item, index) => (
-        <div className="preview">
+        <div className="preview" key={index}>
           <div className="preview-title">
             <p className="preview-title-p">{item.title}</p>
             <span className="preview-title-span">{item.comments}</span>

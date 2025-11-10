@@ -1,17 +1,14 @@
-import { useState } from "react";
-import data from "./data";
 import "./Post.css";
 
-function Post() {
-  let [Post, setPost] = useState(data);
+function Post({ data }) {
   return (
     <div className="post-list">
-      {Post.slice(0, 3).map((item, index) => (
+      {data.map((item, index) => (
         <div key={index} className="post-row">
-          <span className="col-title">{Post[index].title}</span>
-          <span className="col-category">{Post[index].category}</span>
-          <span className="col-author">{Post[index].author}</span>
-          <span className="col-date">{Post[index].lastEdited}</span>
+          <span className="col-title">{item.title}</span>
+          <span className="col-category">{item.category}</span>
+          <span className="col-author">{item.author}</span>
+          <span className="col-date">{item.lastEdited}</span>
         </div>
       ))}
     </div>

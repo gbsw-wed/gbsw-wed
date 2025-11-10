@@ -2,9 +2,22 @@ import "./PostPage.css";
 import { useNavigate } from "react-router-dom";
 import Post from "./Post.jsx";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import data from "./data.js";
 
 function PostPage({ setIsSignup }) {
   const navigate = useNavigate();
+
+  const [btnCount] = useState([1, 2, 3]);
+  const [pageOffset, setPageOffset] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const postsPerPage = 12;
+  const totalPages = Math.ceil(data.length / postsPerPage);
+
+  const startIdx = (currentPage - 1) * postsPerPage;
+  const endIdx = startIdx + postsPerPage;
+  const slicedData = data.slice(startIdx, endIdx);
 
   return (
     <div className="mainBg">
@@ -35,13 +48,16 @@ function PostPage({ setIsSignup }) {
           </button>
         </div>
       </div>
+
       <div className="postPage-write">
         <div className="contentTitle">게시글 작성하기</div>
         <Link to="/write">
           <button className="postPage-write-btn">게시글 작성하기</button>
         </Link>
       </div>
+
       <img className="postPage-img" src="/images/gbs-mascot.png" alt="" />
+
       <div className="postPage-bg">
         <img
           className="postPage-content-bg"
@@ -53,6 +69,7 @@ function PostPage({ setIsSignup }) {
           src="images/postPage-content.png"
           alt=""
         />
+
         <div className="postPage-content-titleBox">
           <div className="postPage-content-titleBox-title">
             <p>제목</p>
@@ -60,16 +77,41 @@ function PostPage({ setIsSignup }) {
             <p>글저자</p>
             <p>[최근 수정일]</p>
           </div>
-          <Post></Post>
+          <Post data={slicedData}></Post>
         </div>
+
         <div className="postPage-content-nextBtn">
-          <button className="postPage-content-nextBtn-btn1">
+          <button
+            onClick={() => {
+              if (pageOffset > 0) setPageOffset(pageOffset - 3);
+            }}
+            className="postPage-content-nextBtn-btn1"
+          >
             <img src="/images/btn-top.png" alt="" />
           </button>
-          <button className="postPage-content-nextBtn-btn2">3</button>
-          <button className="postPage-content-nextBtn-btn3">2</button>
-          <button className="postPage-content-nextBtn-btn4">1</button>
-          <button className="postPage-content-nextBtn-btn5">
+
+          {btnCount.map((Item, index) => {
+            const pageNum = Item + pageOffset;
+            if (pageNum > totalPages) return null;
+            return (
+              <button
+                key={index}
+                onClick={() => setCurrentPage(pageNum)}
+                className={`postPage-content-nextBtn-btn${Item + 1} ${
+                  currentPage === pageNum ? "active" : ""
+                }`}
+              >
+                {pageNum}
+              </button>
+            );
+          })}
+
+          <button
+            onClick={() => {
+              if (pageOffset + 3 < totalPages) setPageOffset(pageOffset + 3);
+            }}
+            className="postPage-content-nextBtn-btn5"
+          >
             <img src="/images/btn-bottom.png" alt="" />
           </button>
         </div>

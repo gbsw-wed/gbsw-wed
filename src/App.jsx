@@ -1,7 +1,7 @@
 import { useState } from "react";
 import LoginPage from "./pages/login";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
 import Layout from "./pages/Layout";
 import PostPage from "./pages/PostPage";
 import Pages404 from "./pages/Page404";
@@ -262,6 +262,9 @@ function MainPage() {
 
         <div className="popular">
           <div className="contentTitle">인기 검색어</div>
+          <Link to="/notice" className="content-notice">
+            <img src="/images/btn-left.png" alt="" />
+          </Link>
           <div className="content2">
             <Preview></Preview>
           </div>
@@ -269,6 +272,9 @@ function MainPage() {
 
         <div className="recommend">
           <div className="contentTitle">추천 검색어</div>
+          <Link to="/notice" className="content-notice">
+            <img src="/images/btn-left.png" alt="" />
+          </Link>
           <div className="content2">
             <Preview></Preview>
           </div>
