@@ -1,9 +1,13 @@
-  .post-list {
-  margin-top: 5px;
+.post-list{
+  width: 55vw;
+  height: 35vh;
 }
+
 
 .post-row {
   display: grid;
+  height: 2.7vw;
+  width: 100%;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   padding: 10px 0;
   border-bottom: 1px solid #eee;

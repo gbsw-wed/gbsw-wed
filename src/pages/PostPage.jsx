@@ -12,7 +12,7 @@ function PostPage({ setIsSignup }) {
   const [pageOffset, setPageOffset] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const postsPerPage = 12;
+  const postsPerPage = 14;
   const totalPages = Math.ceil(data.length / postsPerPage);
 
   const startIdx = (currentPage - 1) * postsPerPage;

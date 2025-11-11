@@ -1,12 +1,12 @@
 import { useState } from "react";
 import LoginPage from "./pages/login";
 import "./App.css";
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes, Link, useNavigate } from "react-router-dom";
 import Layout from "./pages/Layout";
 import PostPage from "./pages/PostPage";
 import Pages404 from "./pages/Page404";
 import Preview from "./pages/Preview";
-import data from "./pages/data.js";
+import Postwrite from "./pages/Postwrite.jsx";
 
 function App() {
   const [isSignup, setIsSignup] = useState(false);
@@ -14,7 +14,15 @@ function App() {
     <>
       <Routes>
         <Route element={<Layout></Layout>}>
-          <Route path="/" element={<MainPage></MainPage>}></Route>
+          <Route
+            path="/"
+            element={
+              <MainPage
+                isSignup={isSignup}
+                setIsSignup={setIsSignup}
+              ></MainPage>
+            }
+          ></Route>
           <Route
             path="/notice"
             element={
@@ -24,7 +32,7 @@ function App() {
               ></PostPage>
             }
           ></Route>
-          <Route path="/write" element={<div>게시글 작성 페이지</div>}></Route>
+          <Route path="/write" element={<Postwrite></Postwrite>}></Route>
         </Route>
         <Route
           path="/login"
@@ -41,7 +49,8 @@ function App() {
   );
 }
 
-function MainPage() {
+function MainPage({ isSignup, setIsSignup }) {
+  const navigate = useNavigate();
   return (
     <div className="mainBg">
       <div className="mainBgCircle1"></div>
@@ -259,16 +268,40 @@ function MainPage() {
             </div>
           </div>
         </div>
-
-        <div className="popular">
-          <div className="contentTitle">인기 검색어</div>
-          <Link to="/notice" className="content-notice">
-            <img src="/images/btn-left.png" alt="" />
-          </Link>
-          <div className="content2">
-            <Preview></Preview>
+        {isSignup == true ? (
+          <div className="popular">
+            <div className="contentTitle">인기 검색어</div>
+            <Link to="/notice" className="content-notice">
+              <img src="/images/btn-left.png" alt="" />
+            </Link>
+            <div className="content2">
+              <Preview></Preview>
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="notLogin">
+            <div className="notLoginTitle">로그인 하기</div>
+            <button
+              className="notLogin-login-btn"
+              onClick={() => {
+                setIsSignup(false);
+                navigate("/login");
+              }}
+            >
+              로그인
+            </button>
+            <button
+              className="notLogin-singup-btn"
+              onClick={() => {
+                setIsSignup(true);
+                navigate("/login");
+              }}
+            >
+              회원가입
+            </button>
+            <h4 className="notText">로그인을 먼저 진행해주세요</h4>
+          </div>
+        )}
 
         <div className="recommend">
           <div className="contentTitle">추천 검색어</div>

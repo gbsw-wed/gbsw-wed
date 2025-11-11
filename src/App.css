@@ -25,11 +25,12 @@ body{
 
 
 .mainBg{
-  width: 100vw;
+  width: 100%;
   height: 100vw;
   background-color: #F0F0F0;
   position: relative;
   overflow: hidden;
+  overflow-y: auto;
 }
 
 .mainBgCircle1 {
@@ -125,7 +126,7 @@ a{
   width: 32vw;
   height: 21vw;
   display: flex;
-  top: 6vh;
+  top: 50px;
   left: 5vw;
   background-color: #fafafa;
   border-radius: 2vw;
@@ -139,7 +140,7 @@ a{
   width: 32vw;
   height: 21vw;
   display: flex;
-  top: 49vh;
+  top: 50vh;
   left: -27vw;
   background-color: #fafafa;
   border-radius: 2vw;
@@ -253,3 +254,68 @@ td{
 .content-notice img{
   margin-left: 0.5vw;
 }
+
+.notLogin{
+  position: relative;
+  width: 32vw;
+  z-index: 5;
+  height: 21vw;
+  top: 6vh;
+  left: 5vw;
+  background-color: #fafafa;
+  border-radius: 2vw;
+  padding: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.notLoginTitle{
+  width: 12vw;
+  height: 5vh;
+  background-color: #fafafa;
+  border: 1px solid gray;
+  text-align: center;
+  font-size: 1.3vw;
+  padding-top: 7px;
+  border-radius: 1vw;
+  font-weight: 500;
+  position: absolute;
+  left: 3vw;
+  top: -2vh;
+}
+
+.notLogin-login-btn{
+  display: block;
+  justify-self: center;
+  margin-top: 4vw;
+  width: 80%;
+  height: 20%;
+  border: none;
+  border-radius: 2vw;
+  color: white;
+  background-color: #66C09E;
+  font-size: 1.8vw;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.notLogin-singup-btn{
+  display: block;
+  justify-self: center;
+  margin-top: 2vw;
+  width: 80%;
+  height: 20%;
+  border: none;
+  border-radius: 2vw;
+  color: white;
+  background-color: #66C09E;
+  font-size: 1.8vw;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.notText{
+  text-align: center;
+  margin-top: 2vw;
+  color: #7f7f7f;
+  text-decoration: underline;
+}
+
