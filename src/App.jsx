@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route element={<Layout></Layout>}>
+        <Route element={<Layout isSignup={isSignup}></Layout>}>
           <Route
             path="/"
             element={
@@ -31,7 +31,10 @@ function App() {
                 setIsSignup={setIsSignup}
               ></PostPage>
             }
-          ></Route>
+          >
+            <Route path=":id" element={<div>상세페이지</div>}></Route>
+          </Route>
+
           <Route path="/write" element={<Postwrite></Postwrite>}></Route>
         </Route>
         <Route

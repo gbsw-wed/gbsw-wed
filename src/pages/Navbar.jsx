@@ -6,7 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 
-function NavarPage() {
+function NavarPage({ isSignup }) {
   return (
     <div>
       <Navbar expand="lg" className="bg-body-tertiary Navbar">
@@ -33,9 +33,15 @@ function NavarPage() {
           <Link to="/notice">
             <Button className="noticeBtn">게시글 보기</Button>
           </Link>
-          <Link to="/login">
-            <Button className="loginBtn">로그인</Button>
-          </Link>
+          {isSignup == true ? (
+            <Link to="">
+              <Button className="myAbout">내정보</Button>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <Button className="loginBtn">로그인</Button>
+            </Link>
+          )}
         </Container>
       </Navbar>
     </div>

@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
 import NavarPage from "./Navbar";
 
-function Layout() {
+function Layout({ isSignup }) {
   return (
     <div>
-      <NavarPage></NavarPage>
+      <NavarPage isSignup={isSignup}></NavarPage>
       <Outlet></Outlet>
     </div>
   );
