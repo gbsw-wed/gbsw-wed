@@ -14,8 +14,15 @@ function MyAbout() {
               <p>프로필 변경</p>
             </label>
             <input type="file" id="input-file" style={{ display: "none" }} />
-            <button className="myAbout-input-del">계정 삭제</button>
           </div>
+          <button
+            onClick={() => {
+              alert("계정삭제 구현해라");
+            }}
+            className="myAbout-input-del"
+          >
+            계정 삭제
+          </button>
         </div>
       </div>
     </div>

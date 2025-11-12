@@ -4,8 +4,9 @@ import Post from "./Post.jsx";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import data from "./data.js";
+import Preview from "./Preview.jsx";
 
-function PostPage({ setIsSignup }) {
+function PostPage({ isSignup, setIsSignup }) {
   const navigate = useNavigate();
 
   const [btnCount] = useState([1, 2, 3]);
@@ -25,35 +26,55 @@ function PostPage({ setIsSignup }) {
       <div className="mainBgCircle2"></div>
 
       <div className="postPage-login">
-        <div className="contentTitle">로그인 하기</div>
-
-        <div className="postPage-login-content">
-          <button
-            className="postPage-login-btn"
-            onClick={() => {
-              setIsSignup(false);
-              navigate("/login");
-            }}
-          >
-            로그인
-          </button>
-          <button
-            className="postPage-singup-btn"
-            onClick={() => {
-              setIsSignup(true);
-              navigate("/login");
-            }}
-          >
-            회원가입
-          </button>
-        </div>
+        {isSignup == true ? (
+          <>
+            <div className="contentTitle">인기 검색어</div>
+            <Link to="/notice" className="content-notice">
+              <img src="/images/btn-left.png" alt="" />
+            </Link>
+            <div className="postPage-login-content">
+              <Preview></Preview>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="contentTitle">로그인 하기</div>
+            <div className="postPage-login-content">
+              <button
+                className="postPage-login-btn"
+                onClick={() => {
+                  setIsSignup(false);
+                  navigate("/login");
+                }}
+              >
+                로그인
+              </button>
+              <button
+                className="postPage-singup-btn"
+                onClick={() => {
+                  setIsSignup(true);
+                  navigate("/login");
+                }}
+              >
+                회원가입
+              </button>
+            </div>
+          </>
+        )}
       </div>
 
       <div className="postPage-write">
         <div className="contentTitle">게시글 작성하기</div>
-        <Link to="/write">
-          <button className="postPage-write-btn">게시글 작성하기</button>
-        </Link>
+        <button
+          onClick={() => {
+            isSignup === true
+              ? navigate("/write")
+              : alert("로그인을 먼저 진행해주세요");
+          }}
+          className="postPage-write-btn"
+        >
+          게시글 작성하기
+        </button>
       </div>
 
       <img className="postPage-img" src="/images/gbs-mascot.png" alt="" />

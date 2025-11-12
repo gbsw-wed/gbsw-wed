@@ -1,5 +1,4 @@
 .myAboutContent{
-  background-color: beige;
   width: 30%;
   height: 45%;
   z-index: 5;
@@ -39,7 +38,7 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  margin-top: 2vh;
+  margin-top: 3vh;
   width: 70%;
   height: 20%;
   border-radius: 2vw;
@@ -53,4 +52,20 @@
 
 .myAbout-input-file p{
   margin-top: 1.2vh;
+}
+
+.myAbout-input-del{
+  width: 60%;
+  height: 10%;
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+  font-size: 2vw;
+  border: none;
+  border-radius: 2vw;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2) ;
+  background-color: #DF3E62;
+  color: white;
 }

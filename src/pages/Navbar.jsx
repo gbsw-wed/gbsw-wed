@@ -33,8 +33,8 @@ function NavarPage({ isSignup }) {
           <Link to="/notice">
             <Button className="noticeBtn">게시글 보기</Button>
           </Link>
-          {isSignup == true ? (
-            <Link to="">
+          {isSignup === true ? (
+            <Link to="/myAbout">
               <Button className="myAbout">내정보</Button>
             </Link>
           ) : (

@@ -7,9 +7,10 @@ import PostPage from "./pages/PostPage";
 import Pages404 from "./pages/Page404";
 import Preview from "./pages/Preview";
 import Postwrite from "./pages/Postwrite.jsx";
+import MyAbout from "./pages/myAbout.jsx";
 
 function App() {
-  const [isSignup, setIsSignup] = useState(false);
+  const [isSignup, setIsSignup] = useState(true);
   return (
     <>
       <Routes>
@@ -36,6 +37,7 @@ function App() {
           </Route>
 
           <Route path="/write" element={<Postwrite></Postwrite>}></Route>
+          <Route path="/myAbout" element={<MyAbout></MyAbout>}></Route>
         </Route>
         <Route
           path="/login"
