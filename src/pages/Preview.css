@@ -34,12 +34,15 @@
   font-weight: 500;
   font-size: 1.5vw;
   margin-top: 1.2vw;
+  width: 13vw;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 .preview-title-span{
   margin: 0;
   font-size: 1vw;
-  margin-left: 1.2vw;
+  margin-left: 1vw;
   margin-top: 1.8vw;
 }
 

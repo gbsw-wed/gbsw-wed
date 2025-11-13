@@ -1,11 +1,18 @@
 import "./Post.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Post({ data }) {
+  const navigate = useNavigate();
   return (
     <div className="post-list">
       {data.map((item, index) => (
-        <div key={index} className="post-row">
+        <div
+          key={index}
+          onClick={() => {
+            navigate(`posts/${item.id}`);
+          }}
+          className="post-row"
+        >
           <span className="col-title">{item.title}</span>
           <span className="col-category">{item.category}</span>
           <span className="col-author">{item.author}</span>

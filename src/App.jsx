@@ -3,11 +3,12 @@ import LoginPage from "./pages/login";
 import "./App.css";
 import { Route, Routes, Link, useNavigate } from "react-router-dom";
 import Layout from "./pages/Layout";
-import PostPage from "./pages/PostPage";
+import PostPage from "./pages/PostPage.jsx";
 import Pages404 from "./pages/Page404";
 import Preview from "./pages/Preview";
 import Postwrite from "./pages/Postwrite.jsx";
 import MyAbout from "./pages/myAbout.jsx";
+import PostDetails from "./pages/PostDetails.jsx";
 
 function App() {
   const [isSignup, setIsSignup] = useState(true);
@@ -32,10 +33,16 @@ function App() {
                 setIsSignup={setIsSignup}
               ></PostPage>
             }
-          >
-            <Route path=":id" element={<div>상세페이지</div>}></Route>
-          </Route>
-
+          ></Route>
+          <Route
+            path="/notice/posts/:id"
+            element={
+              <PostDetails
+                isSignup={isSignup}
+                setIsSignup={setIsSignup}
+              ></PostDetails>
+            }
+          ></Route>
           <Route path="/write" element={<Postwrite></Postwrite>}></Route>
           <Route path="/myAbout" element={<MyAbout></MyAbout>}></Route>
         </Route>

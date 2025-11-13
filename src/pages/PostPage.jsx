@@ -1,5 +1,5 @@
 import "./PostPage.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 import Post from "./Post.jsx";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -33,7 +33,7 @@ function PostPage({ isSignup, setIsSignup }) {
               <img src="/images/btn-left.png" alt="" />
             </Link>
             <div className="postPage-login-content">
-              <Preview></Preview>
+              <Preview size={10}></Preview>
             </div>
           </>
         ) : (

@@ -116,14 +116,28 @@
 }
 
 .myAboutdetail{
-  width: 90%;
-  height: 20%;
+  width: 95%;
+  height: 40%;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 0px;
+  bottom: 3vh;
   border: 1px solid rgba(100, 100, 100, 0.4);
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2) ;
   border-radius: 0.5vw;
-  
+}
+
+.myAboutSave{
+  width: 90%;
+  height: 7vh;
+  border: 1px solid rgba(100, 100, 100, 0.4);
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2) ;
+  border-radius: 0.5vw;
+  font-size: 2vw;
+  background-color: #7f7f7f;
+  color: white;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 3vh;
 }

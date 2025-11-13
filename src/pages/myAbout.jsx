@@ -46,6 +46,7 @@ function MyAbout() {
               <p></p>
             </div>
           </div>
+          <button className="myAboutSave">저장</button>
         </div>
       </div>
     </div>
