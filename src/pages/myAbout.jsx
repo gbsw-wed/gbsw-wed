@@ -24,6 +24,29 @@ function MyAbout() {
             계정 삭제
           </button>
         </div>
+        <div className="myAboutContentChange">
+          <div className="myAoutChange">
+            <p className="myAboutTileChange">사용자 이름</p>
+            <button className="myAboutChangeBtn">변경</button>
+            <div className="myAboutdetail">
+              <p></p>
+            </div>
+          </div>
+          <div className="myAoutChange">
+            <p className="myAboutTileChange">비밀번호</p>
+            <button className="myAboutChangeBtn">변경</button>
+            <div className="myAboutdetail">
+              <p></p>
+            </div>
+          </div>
+          <div className="myAoutChange">
+            <p className="myAboutTileChange">학번</p>
+            <button className="myAboutChangeBtn">변경</button>
+            <div className="myAboutdetail">
+              <p></p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
