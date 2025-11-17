@@ -98,7 +98,7 @@ function PostPage({ isSignup, setIsSignup }) {
             <p>글저자</p>
             <p>[최근 수정일]</p>
           </div>
-          <Post data={slicedData}></Post>
+          <Post isSignup={isSignup} data={slicedData}></Post>
         </div>
 
         <div className="postPage-content-nextBtn">

@@ -1,7 +1,7 @@
 import "./Post.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function Post({ data }) {
+function Post({ isSignup, data }) {
   const navigate = useNavigate();
   return (
     <div className="post-list">
@@ -9,7 +9,11 @@ function Post({ data }) {
         <div
           key={index}
           onClick={() => {
-            navigate(`posts/${item.id}`);
+            if (isSignup === false) {
+              alert("로그인을 먼저 진행해주세요.");
+            } else {
+              navigate(`posts/${item.id}`);
+            }
           }}
           className="post-row"
         >

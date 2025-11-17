@@ -87,10 +87,10 @@
 }
 
 .postPage-bg{
-  position: relative;
+  position: absolute;
   width: 60vw;
-  height: 45vw;
-  top: -38vh;
+  height: 80vh;
+  top: 5vh;
   left: 3vw;
   border-top-right-radius: 40px;
   border-top-left-radius: 20px;
@@ -126,6 +126,7 @@
   height: 95%;
   padding: 20px 40px ;
   z-index: 3;
+  overflow-x: auto;
 }
 
 .postPage-content-titleBox-title{

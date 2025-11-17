@@ -13,6 +13,7 @@
   width: 65vw;
   height: 85vh;
   top: 2vw;
+  overflow-y: auto;
 }
 
 .Postwrite-post-title{
