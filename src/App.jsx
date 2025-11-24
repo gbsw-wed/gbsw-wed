@@ -9,9 +9,10 @@ import Preview from "./pages/Preview";
 import Postwrite from "./pages/Postwrite.jsx";
 import MyAbout from "./pages/myAbout.jsx";
 import PostDetails from "./pages/PostDetails.jsx";
+import FormCheckLabel from "react-bootstrap/esm/FormCheckLabel.js";
 
 function App() {
-  const [isSignup, setIsSignup] = useState(true);
+  const [isSignup, setIsSignup] = useState(false);
   return (
     <>
       <Routes>
@@ -307,6 +308,7 @@ function MainPage({ isSignup, setIsSignup }) {
               onClick={() => {
                 setIsSignup(true);
                 navigate("/login");
+                setIsSignup(false);
               }}
             >
               회원가입
