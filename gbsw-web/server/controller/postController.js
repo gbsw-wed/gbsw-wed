@@ -1,9 +1,5 @@
 const postModel = require('../models/postModel');
 
-
-
-
-
 // 게시글 작성
 exports.createPost = async (req, res, next) => {
     console.log("req.body:", req.body);
