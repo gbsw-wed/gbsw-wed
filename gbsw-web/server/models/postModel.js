@@ -24,6 +24,7 @@ async function getPosts(keyword = '') {
 }
 
 
+
 // 게시글 상세
 async function getPostById(postId) {
     await pool.query(`UPDATE posts SET views = views + 1 WHERE post_id = ?`, [postId]);
