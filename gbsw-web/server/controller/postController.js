@@ -97,24 +97,22 @@ exports.deletePost = async (req, res, next) => {
 
 
 
-// 인기 검색어 
-exports.getPopularKeywords = async (req, res) => {
-    try {
-      const keywords = await postModel.getPopularKeywords();
-      res.json({ success: true, keywords });
-    } catch (err) {
-      console.error("인기 키워드 조회 에러:", err);
-      res.status(500).json({ success: false, message: "인기 키워드 로드 실패" });
-    }
-  };
-  
-  // 추천 검색어 
-  exports.getRecommendedKeywords = async (req, res) => {
-    try {
-      const keywords = await postModel.getRecommendedKeywords();
-      res.json({ success: true, keywords });
-    } catch (err) {
-      console.error("추천 키워드 조회 에러:", err);
-      res.status(500).json({ success: false, message: "추천 키워드 로드 실패" });
-    }
-  };
+exports.getPopularPosts = async (req, res) => {
+  try {
+    const posts = await postModel.getPopularPosts();
+    res.json({ success: true, posts });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: "인기 게시글 로드 실패" });
+  }
+};
+
+exports.getRecommendedPosts = async (req, res) => {
+  try {
+    const posts = await postModel.getRecommendedPosts();
+    res.json({ success: true, posts });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: "추천 게시글 로드 실패" });
+  }
+};

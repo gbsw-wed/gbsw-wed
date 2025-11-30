@@ -11,41 +11,62 @@ const createUser = async (username, password, stuNum) => {
 };
 
 module.exports = {
+  createUser,
+
   findByUsername: async (username) => {
-    const [rows] = await pool.query('SELECT * FROM users WHERE username=? AND deleted_at IS NULL', [username]);
+    const [rows] = await pool.query(
+      'SELECT * FROM users WHERE username=? AND deleted_at IS NULL',
+      [username]
+    );
     return rows[0];
   },
 
   findByStuNum: async (stuNum) => {
-    const [rows] = await pool.query('SELECT * FROM users WHERE stuNum=? AND deleted_at IS NULL', [stuNum]);
+    const [rows] = await pool.query(
+      'SELECT * FROM users WHERE stuNum=? AND deleted_at IS NULL',
+      [stuNum]
+    );
     return rows[0];
   },
 
-  createUser,
-
   updateUsernameByStuNum: async (stuNum, username) => {
-    const [result] = await pool.query('UPDATE users SET username=?, updated_at=NOW() WHERE stuNum=?', [username, stuNum]);
+    const [result] = await pool.query(
+      'UPDATE users SET username=?, updated_at=NOW() WHERE stuNum=? AND deleted_at IS NULL',
+      [username, stuNum]
+    );
     return result.affectedRows;
   },
 
   updatePasswordByStuNum: async (stuNum, password) => {
-    const [result] = await pool.query('UPDATE users SET password=?, updated_at=NOW() WHERE stuNum=?', [password, stuNum]);
+    const [result] = await pool.query(
+      'UPDATE users SET password=?, updated_at=NOW() WHERE stuNum=? AND deleted_at IS NULL',
+      [password, stuNum]
+    );
     return result.affectedRows;
   },
 
   getUserProfileImage: async (userId) => {
-    const [rows] = await pool.query('SELECT profile_img FROM users WHERE user_id=?', [userId]);
+    const [rows] = await pool.query(
+      'SELECT profile_img FROM users WHERE user_id=? AND deleted_at IS NULL',
+      [userId]
+      
+    );
     return rows[0];
   },
 
   updateProfileImage: async (userId, fileName) => {
-    const [result] = await pool.query('UPDATE users SET profile_img=?, updated_at=NOW() WHERE user_id=?', [fileName, userId]);
+    const [result] = await pool.query(
+      'UPDATE users SET profile_img=?, updated_at=NOW() WHERE user_id=? AND deleted_at IS NULL',
+      [fileName, userId]
+    );
     return result.affectedRows;
   },
 
   softDeleteUser: async (userId) => {
-    const [result] = await pool.query('UPDATE users SET deleted_at=NOW() WHERE user_id=?', [userId]);
+    const [result] = await pool.query(
+      'UPDATE users SET deleted_at=NOW() WHERE user_id=? AND deleted_at IS NULL',
+      [userId]
+    );
     return result.affectedRows;
   }
 };
-

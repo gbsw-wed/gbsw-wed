@@ -59,41 +59,29 @@ async function deletePost(postId) {
     return result.affectedRows;
 }
 
-//  인기 검색어 조회수 합계 기준 
-async function getPopularKeywords() {
-    const sql = `
-      SELECT 
-        tag, 
-        SUM(views) AS totalViews
-      FROM posts 
-      WHERE tag IS NOT NULL 
-        AND tag != '' 
-        AND deleted_at IS NULL
-      GROUP BY tag
-      ORDER BY totalViews DESC
-      LIMIT 5
-    `;
-    const [rows] = await pool.query(sql);
-    return rows; // [{ tag: "공지", totalViews: 2847 }, ...]
-  }
-  
-  //  추천 검색어 좋아요 기준 
-  async function getRecommendedKeywords() {
-    const sql = `
-      SELECT 
-        tag, 
-        SUM(likes) AS totalLikes
-      FROM posts 
-      WHERE tag IS NOT NULL 
-        AND tag != '' 
-        AND deleted_at IS NULL
-      GROUP BY tag
-      ORDER BY totalLikes DESC
-      LIMIT 5
-    `;
-    const [rows] = await pool.query(sql);
-    return rows; 
-  }
+async function getPopularPosts() {
+  const sql = `
+    SELECT post_id, title, created_at
+    FROM posts
+    WHERE deleted_at IS NULL
+    ORDER BY views DESC
+    LIMIT 5
+  `;
+  const [rows] = await pool.query(sql);
+  return rows;
+}
+
+async function getRecommendedPosts() {
+  const sql = `
+    SELECT post_id, title, created_at, likes
+    FROM posts
+    WHERE deleted_at IS NULL
+    ORDER BY likes DESC, created_at DESC
+    LIMIT 5
+  `;
+  const [rows] = await pool.query(sql);
+  return rows;
+}
 
 module.exports = {
     createPost,
@@ -102,6 +90,6 @@ module.exports = {
     updatePost,
     deletePost,
     getPostById,
-    getPopularKeywords,
-    getRecommendedKeywords
+    getPopularPosts,
+    getRecommendedPosts
 };

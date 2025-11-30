@@ -33,7 +33,12 @@ exports.login = async (req, res, next) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(401).json({ message: '비밀번호가 틀렸습니다' });
 
-    req.session.user = { id: user.user_id, username: user.username, stuNum: user.stuNum };
+    req.session.user = {
+      user_id: user.user_id,
+      username: user.username,      
+      stuNum: user.stuNum
+  };
+
     res.json({
       success: true,
       user: req.session.user
@@ -43,16 +48,35 @@ exports.login = async (req, res, next) => {
   }
 };
 
+// userController.js
 exports.logout = (req, res) => {
-  req.session.destroy(() => {
-    res.clearCookie('connect.sid');
-    res.status(200).json({ message: '로그아웃 성공' });
+  if (req.session) {
+    req.session.destroy((err) => {
+      if (err) console.log("세션 삭제 실패:", err);
+    });
+  }
+
+  res.clearCookie("connect.sid", {
+    path: "/",
+    httpOnly: true,
+    secure: false,      // 로컬이라 false
+    sameSite: "lax"
   });
+
+  res.status(200).json({ message: "로그아웃 성공" });
 };
 
+// userController.js
 exports.check = (req, res) => {
-  if (req.session?.user) return res.json({ loggedIn: true, user: req.session.user });
-  return res.json({ loggedIn: false });
+  if (req.session?.user) {
+    return res.json({ 
+      success: true,           
+      user: req.session.user 
+    });
+  }
+  return res.status(401).json({ 
+    success: false         
+  });
 };
 
 exports.updateUsername = async (req, res, next) => {
@@ -94,32 +118,28 @@ exports.updatePassword = async (req, res, next) => {
 
 exports.updateProfileImage = async (req, res, next) => {
   try {
-    if (!req.session.user) {
+    if (!req.session.user.user_id) {
       return res.status(401).json({ message: "로그인 필요" });
     }
+
+    const userId = req.session.user.user_id; 
 
     if (!req.file) {
       return res.status(400).json({ message: "파일이 없습니다" });
     }
 
-    const userId = req.session.user.id;
-
-    // 기존 사진 삭제 (있으면)
+    // 이미지 삭제
     const old = await userModel.getUserProfileImage(userId);
     if (old && old.profile_img) {
       const oldPath = path.join(__dirname, "..", "uploads", "profile", old.profile_img);
-      if (fs.existsSync(oldPath)) {
-        fs.unlinkSync(oldPath);
-      }
+      if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
     }
 
-    // 새 사진 DB에 저장
+    // DB 업데이트
     await userModel.updateProfileImage(userId, req.file.filename);
 
-    // 성공 응답
     res.json({ 
-      message: "프로필 이미지 변경 완료",
-      filename: req.file.filename  // 프론트에서 바로 쓰라고 줌
+      filename: req.file.filename
     });
 
   } catch (err) {
@@ -128,12 +148,15 @@ exports.updateProfileImage = async (req, res, next) => {
   }
 };
 
+
 exports.deleteAccount = async (req, res, next) => {
   try {
-    const user = req.session.user;
-    if (!user) return res.status(401).json({ message: "로그인 필요" });
+    const userId = req.session.user.user_id;
 
-    await userModel.softDeleteUser(user.id);
+    if (!userId) return res.status(401).json({ message: "로그인 필요" });
+
+    await userModel.softDeleteUser(userId.user_id);
+
     req.session.destroy(() => {
       res.clearCookie("connect.sid");
       res.json({ message: "계정이 삭제되었습니다." });
@@ -142,3 +165,6 @@ exports.deleteAccount = async (req, res, next) => {
     next(err);
   }
 };
+
+
+

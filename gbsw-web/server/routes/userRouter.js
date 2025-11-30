@@ -10,7 +10,7 @@ function auth(req, res, next) {
 
 router.post('/signup', userCtr.register);
 router.post('/login', userCtr.login);
-router.get('/logout', auth, userCtr.logout);
+router.post('/logout', auth, userCtr.logout);
 router.get('/me', userCtr.check);
 
 router.put('/changeUsername', auth, userCtr.updateUsername);
