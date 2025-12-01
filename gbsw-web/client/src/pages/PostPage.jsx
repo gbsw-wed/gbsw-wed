@@ -1,6 +1,7 @@
 import "./PostPage.css";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import Post from "./Post.jsx";
+import "./Post.css";  
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
