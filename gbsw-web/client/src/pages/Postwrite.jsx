@@ -19,22 +19,19 @@ function Postwrite() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const [file, setFile] = useState(null); // 단일 파일이면 이렇게!
+  const [file, setFile] = useState(null); 
 
-// 파일 선택 핸들러 (완벽 수정!)
 const handleFile = (e) => {
   const selectedFile = e.target.files[0];
   if (selectedFile) {
     setFile(selectedFile);
-    console.log("선택된 파일:", selectedFile.name); // 디버그용
+    console.log("선택된 파일:", selectedFile.name); 
   }
 };
 
-// 제출 핸들러 (완벽 수정!)
 const handleSubmit = async (e) => {
   e.preventDefault();
 
-  // 필수 입력 체크
   if (!formData.title.trim() || !formData.content.trim()) {
     alert("제목과 내용을 입력해주세요!");
     return;
@@ -46,7 +43,7 @@ const handleSubmit = async (e) => {
   sendData.append("tag", formData.category || "일반");
 
   if (file) {
-    sendData.append("file", file); // ← 이게 핵심!
+    sendData.append("file", file); 
   }
 
   try {

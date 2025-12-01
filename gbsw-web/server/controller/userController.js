@@ -67,7 +67,7 @@ exports.logout = (req, res) => {
   res.status(200).json({ message: "로그아웃 성공" });
 };
 
-// userController.js
+
 exports.check = (req, res) => {
   const user = req.session ? req.session.user : null;
   res.json({
@@ -113,36 +113,38 @@ exports.updatePassword = async (req, res, next) => {
   }
 };
 
-exports.updateProfileImage = async (req, res, next) => {
+// controllers/userController.js
+
+exports.updateProfileImage = async (req, res) => {
   try {
-    if (!req.session.user.user_id) {
+    const userId = req.session.user?.user_id;
+    if (!userId) {
       return res.status(401).json({ message: "로그인 필요" });
     }
 
-    const userId = req.session.user.user_id; 
-
     if (!req.file) {
-      return res.status(400).json({ message: "파일이 없습니다" });
+      return res.status(400).json({ message: "파일이 업로드되지 않았습니다." });
     }
 
-    // 이미지 삭제
-    const old = await userModel.getUserProfileImage(userId);
-    if (old && old.profile_img) {
-      const oldPath = path.join(__dirname, "..", "uploads", "profile", old.profile_img);
-      if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
+    const fileName = req.file.filename;
+
+    const affected = await userModel.updateProfileImage(userId, fileName);
+
+    if (!affected) {
+      return res.status(500).json({ message: "프로필 업데이트 실패" });
     }
 
-    await userModel.updateProfileImage(userId, req.file.filename);
-
-    res.json({ 
-      filename: req.file.filename
+    return res.json({
+      message: "프로필 이미지가 변경되었습니다.",
+      filename: fileName,   // 🔥 프론트에서 필요한 값
     });
 
   } catch (err) {
-    console.error("프로필 이미지 업로드 에러:", err);
-    next(err);
+    console.error(err);
+    return res.status(500).json({ message: "서버 오류" });
   }
 };
+
 
 
 exports.deleteAccount = async (req, res, next) => {

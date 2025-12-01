@@ -1,4 +1,3 @@
-// src/App.jsx ← 완전 최종판 (오타 0개, 동작 100%)
 import { useState, useEffect } from "react";
 import {
   Route,
@@ -9,11 +8,9 @@ import {
 } from "react-router-dom";
 import axios from "axios";
 
-// Axios 전역 설정
 axios.defaults.baseURL = "http://localhost:3000";
 axios.defaults.withCredentials = true;
 
-// 컴포넌트 임포트
 import LoginPage from "./pages/login";
 import "./App.css";
 import Layout from "./pages/Layout";
@@ -23,7 +20,6 @@ import Postwrite from "./pages/Postwrite.jsx";
 import MyAbout from "./pages/myAbout.jsx";
 import PostDetails from "./pages/PostDetails.jsx";
 
-// ====================== 메인 페이지 컴포넌트 ======================
 function MainPage({ isSignup }) {
   const navigate = useNavigate();
   const [popularPosts, setPopularPosts] = useState([]);

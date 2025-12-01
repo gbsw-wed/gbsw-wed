@@ -1,10 +1,6 @@
 const postModel = require('../models/postModel');
-
-// 게시글 작성
-// controller/postController.js
 exports.createPost = async (req, res) => {
     try {
-      // 여기서 req.userId 사용 (미들웨어에서 넣어줌)
       const userId = req.userId;
       if (!userId) {
         return res.status(401).json({ success: false, message: "로그인 필요" });
@@ -22,7 +18,6 @@ exports.createPost = async (req, res) => {
     }
   };
 
-// 게시글 상세
 exports.detail = async (req, res, next) => {
     try {
         const post = await postModel.getPostById(req.params.id);
@@ -35,20 +30,17 @@ exports.detail = async (req, res, next) => {
     }
 };
 
-// 게시글 리스트
 exports.list = async (req, res) => {
     const keyword = req.query.keyword || '';
     const posts = await postModel.getPosts(keyword);
     res.json({ success: true, posts });
 };
 
-// 좋아요
 exports.like = async (req, res) => {
     await postModel.likePost(req.params.id);
     res.json({ success: true, message: '좋아요 처리 완료' });
 };
 
-// 게시글 수정
 exports.updatePost = async (req, res, next) => {
     try {
         const { title, content } = req.body;
