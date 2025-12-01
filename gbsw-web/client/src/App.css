@@ -126,7 +126,7 @@ a{
 .popular{
   position: relative;
   width: 32vw;
-  height: 21vw;
+  height: 18vw;
   display: flex;
   top: 50px;
   left: 5vw;
@@ -140,7 +140,7 @@ a{
 .recommend{
   position: relative;
   width: 32vw;
-  height: 21vw;
+  height: 18vw;
   display: flex;
   top: 50vh;
   left: -27vw;
