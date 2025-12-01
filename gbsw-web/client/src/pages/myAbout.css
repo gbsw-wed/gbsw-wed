@@ -1,0 +1,185 @@
+.myAboutContent {
+    width: 30%;
+    height: 45%;
+    z-index: 5;
+    position: absolute;
+    top: 5vh;
+    left: 5vw;
+}
+
+.myAboutTitle {
+    color: black;
+    font-size: 3vw;
+    margin-left: 10%;
+}
+
+.myAboutImgBox {
+    width: 80%;
+    height: 50%;
+    margin-top: 2vh;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fafafa;
+    border: none;
+    border-radius: 2vw;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.myAboutImgBox img {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 2vw;
+}
+
+.myAbout-input-file {
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 3vh;
+    width: 70%;
+    height: 20%;
+    border-radius: 2vw;
+    background-color: #7f7f7f;
+    font-size: 2vw;
+    color: white;
+    text-align: center;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.myAbout-input-file p {
+    margin-top: 1.2vh;
+}
+
+.myAbout-input-del {
+    width: 60%;
+    height: 10%;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    font-size: 2vw;
+    border: none;
+    border-radius: 2vw;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+    background-color: #df3e62;
+    color: white;
+}
+
+.myAboutContentChange {
+    background-color: #fafafa;
+    width: 60%;
+    height: 48%;
+    position: absolute;
+    top: 4vh;
+    right: 4vw;
+    border-radius: 2vw;
+    border: 1px solid rgba(100, 100, 100, 0.4);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+
+.myAboutContentChange input {
+    width: 70%;
+}
+
+.myAoutChange {
+    width: 90%;
+    height: 25%;
+    justify-self: center;
+    background-color: #fafafa;
+    border: 1px solid rgba(100, 100, 100, 0.4);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 1vw;
+    margin-top: 3vh;
+    display: flex;
+    position: relative;
+}
+
+.myAboutTileChange {
+    font-size: 2vw;
+    margin-top: 1vh;
+    margin-left: 1vw;
+    width: 14vw;
+}
+
+.myAboutChangeBtn {
+    width: 6vw;
+    height: 5vh;
+    border: 1px solid rgba(100, 100, 100, 0.4);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 0.5vw;
+    font-size: 1.5vw;
+    background-color: #7f7f7f;
+    color: white;
+    position: absolute;
+    right: 1vw;
+    top: 1vh;
+}
+.myAbout-delete {
+    width: 60%;
+    height: 10%;
+    position: absolute;
+    bottom: 14%; 
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: block;
+    font-size: 2vw;
+    border: none;
+    border-radius: 2vw;
+
+    background-color: #ff4e4e;
+    color: white;
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.25);
+}
+
+
+.myAbout-logout {
+    width: 60%;
+    height: 10%;
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    font-size: 2vw;
+    border: none;
+    border-radius: 2vw;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+    background-color: #7f7f7f;
+    color: white;
+}
+
+
+
+
+.myAboutdetail {
+    width: 95%;
+    height: 40%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 3vh;
+    border: 1px solid rgba(100, 100, 100, 0.4);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 0.5vw;
+}
+
+.myAboutSave {
+    width: 90%;
+    height: 7vh;
+    border: 1px solid rgba(100, 100, 100, 0.4);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 0.5vw;
+    font-size: 2vw;
+    background-color: #7f7f7f;
+    color: white;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 3vh;
+}
