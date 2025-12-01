@@ -107,13 +107,15 @@ function PostDetails({ isSignup, setIsSignup }) {
 
           <div className="postPage-content-titleBox">
             <p className="postDetail-title">{post.title}</p>
-            <p className="postDetail-lastEdited">
-              최근 수정일: {formatDate(post.updated_at || post.created_at)}
-            </p>
+            <div className="postDetail-info-line">
+              <span className="postDetail-author">작성자: {post.username}</span>
+              <span className="postDetail-lastEdited">
+                최근 수정일: {formatDate(post.updated_at || post.created_at)}
+              </span>
+            </div>
             <div className="postDetail-category-box">
               <p className="postDetail-category">분류: {post.tag || "없음"}</p>
             </div>
-            <div className="postDetail-author">작성자: {post.username}</div>
 
             <div className="postDetail-content-box">
               <p className="postDetail-content">{post.content}</p>
@@ -122,7 +124,7 @@ function PostDetails({ isSignup, setIsSignup }) {
             {post.file_path && (
               <img
                 className="postDetail-image"
-                src={`http://localhost:3000/${post.file_path}`}
+                src={`http://localhost:3000${post.file_path}`}
                 alt="첨부 이미지"
                 style={{ maxWidth: "100%", marginTop: "20px", borderRadius: "12px" }}
               />

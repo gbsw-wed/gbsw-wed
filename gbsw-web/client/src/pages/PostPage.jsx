@@ -165,7 +165,11 @@ function PostPage({ isSignup, setIsSignup }) {
             <p>글저자</p>
             <p>[최근 수정일]</p>
           </div>
-          <Post isSignup={isSignup} data={slicedData} />
+          <Post
+            isSignup={isSignup}
+            data={slicedData}
+            onPostClick={(postId) => navigate(`/notice/${postId}`)}  
+          />
         </div>
 
         {/* 페이지네이션 */}

@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 function Post({ isSignup, data = [], onPostClick }) {
+  const navigate = useNavigate();
   return (
     <div className="post-lists">
       {(Array.isArray(data) ? data : []).map((item) => (
