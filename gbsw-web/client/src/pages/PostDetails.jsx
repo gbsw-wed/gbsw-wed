@@ -28,7 +28,6 @@ function PostDetails({ isSignup }) {
     fetchData();
   }, [id]);
 
-  // 처음에 너가 좋아했던 그 모달 로직 그대로
   const openModal = (src) => {
     setModalImage(src);
     setModalOpen(true);
@@ -41,7 +40,6 @@ function PostDetails({ isSignup }) {
     document.body.style.overflow = "auto";
   };
 
-  // ESC 키도 먹히고
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") closeModal();
@@ -104,10 +102,8 @@ function PostDetails({ isSignup }) {
 
         <img className="postPage-img" src="/images/gbs-mascot.png" alt="" />
 
-        {/* 스케치북 */}
         <div className="postPage-bg">
           <img className="postPage-content-bg" src="/images/postPage-content-bg.png" alt="" />
-          {/* 이 녀석이 클릭 가로채던 범인 */}
           <img className="postPage-content" src="/images/postPage-content.png" alt="" style={{ pointerEvents: "none" }} />
 
           <div className="postPage-content-titleBox">
