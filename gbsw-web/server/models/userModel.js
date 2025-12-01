@@ -49,7 +49,6 @@ module.exports = {
     const [rows] = await pool.query(
       'SELECT profile_img FROM users WHERE user_id=? AND deleted_at IS NULL',
       [userId]
-      
     );
     return rows[0];
   },

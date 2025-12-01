@@ -68,14 +68,10 @@ exports.logout = (req, res) => {
 
 // userController.js
 exports.check = (req, res) => {
-  if (req.session?.user) {
-    return res.json({ 
-      success: true,           
-      user: req.session.user 
-    });
-  }
-  return res.status(401).json({ 
-    success: false         
+  const user = req.session ? req.session.user : null;
+  res.json({
+    loggedIn: !!user,
+    user: user || null
   });
 };
 
@@ -135,7 +131,6 @@ exports.updateProfileImage = async (req, res, next) => {
       if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
     }
 
-    // DB 업데이트
     await userModel.updateProfileImage(userId, req.file.filename);
 
     res.json({ 
@@ -165,6 +160,3 @@ exports.deleteAccount = async (req, res, next) => {
     next(err);
   }
 };
-
-
-

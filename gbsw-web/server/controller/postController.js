@@ -1,35 +1,26 @@
 const postModel = require('../models/postModel');
 
 // 게시글 작성
-exports.createPost = async (req, res, next) => {
-    console.log("req.body:", req.body);
-    console.log("req.file:", req.file);
+// controller/postController.js
+exports.createPost = async (req, res) => {
     try {
-        const { title, tag, content } = req.body;
-
-        const userId = req.session?.user?.id || 1; // 테스트용 userId(default 1)
-        const filePath = req.file ? req.file.filename : null;
-
-        if (!title || !content) {
-            return res.status(400).json({
-                success: false,
-                message: '제목과 내용을 입력해주세요.'
-            });
-        }
-
-        const postId = await postModel.createPost(userId, title, content, filePath, tag);
-
-        res.status(201).json({
-            success: true,
-            message: '게시글 작성 완료',
-            postId
-        });
-
+      // 여기서 req.userId 사용 (미들웨어에서 넣어줌)
+      const userId = req.userId;
+      if (!userId) {
+        return res.status(401).json({ success: false, message: "로그인 필요" });
+      }
+  
+      const { title, content, tag } = req.body;
+      const filePath = req.file ? `/uploads/${req.file.filename}` : null;
+  
+      await postModel.createPost(userId, title, content, filePath, tag);
+      res.json({ success: true, message: "게시글 작성 완료" });
+  
     } catch (err) {
-        console.error(err);
-        next(err);
+      console.error("createPost 에러:", err);
+      res.status(500).json({ success: false, message: "서버 오류" });
     }
-};
+  };
 
 // 게시글 상세
 exports.detail = async (req, res, next) => {
