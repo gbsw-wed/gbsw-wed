@@ -41,6 +41,7 @@ exports.login = async (req, res, next) => {
 
     res.json({
       success: true,
+      message: "로그인 성공",
       user: req.session.user
     });
   } catch (err) {

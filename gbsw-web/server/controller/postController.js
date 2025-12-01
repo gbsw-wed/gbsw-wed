@@ -1,5 +1,9 @@
 const postModel = require('../models/postModel');
 
+
+
+
+
 // 게시글 작성
 // controller/postController.js
 exports.createPost = async (req, res) => {
