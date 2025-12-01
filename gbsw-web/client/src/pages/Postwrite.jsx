@@ -19,33 +19,55 @@ function Postwrite() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleFile = (e) => {
-    setFiles(e.target.files[0]);
-  };
+  const [file, setFile] = useState(null); // 단일 파일이면 이렇게!
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const sendData = new FormData();
-    sendData.append("title", formData.title);
-    sendData.append("content", formData.content);
-    sendData.append("tag", formData.category);
-    if (files) sendData.append("file", files);
+// 파일 선택 핸들러 (완벽 수정!)
+const handleFile = (e) => {
+  const selectedFile = e.target.files[0];
+  if (selectedFile) {
+    setFile(selectedFile);
+    console.log("선택된 파일:", selectedFile.name); // 디버그용
+  }
+};
 
-    try {
-      await axios.post("/posts/write", sendData, {
-        withCredentials: true,
-      });
-      alert("게시글 등록 완료!");
-      navigate("/notice");
-    } catch (err) {
-      if (err.response?.status === 401) {
-        alert("로그인이 필요합니다!");
-        navigate("/login");
-      } else {
-        alert(err.response?.data?.message || "게시글 작성 실패");
-      }
+// 제출 핸들러 (완벽 수정!)
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  // 필수 입력 체크
+  if (!formData.title.trim() || !formData.content.trim()) {
+    alert("제목과 내용을 입력해주세요!");
+    return;
+  }
+
+  const sendData = new FormData();
+  sendData.append("title", formData.title);
+  sendData.append("content", formData.content);
+  sendData.append("tag", formData.category || "일반");
+
+  if (file) {
+    sendData.append("file", file); // ← 이게 핵심!
+  }
+
+  try {
+    await axios.post("/posts/write", sendData, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    alert("게시글이 성공적으로 등록되었습니다!");
+    navigate("/notice");
+  } catch (err) {
+    console.error("업로드 실패:", err);
+    if (err.response?.status === 401) {
+      alert("로그인이 필요합니다!");
+      navigate("/login");
+    } else {
+      alert(err.response?.data?.message || "게시글 작성에 실패했습니다.");
     }
-  };
+  }
+};
 
 // Postwrite.jsx 안의 useEffect 완전히 교체
 useEffect(() => {

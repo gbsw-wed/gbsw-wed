@@ -1,137 +1,152 @@
+// PostDetails.jsx — 너가 제일 좋아했던 그 시절로 돌아감
 import "./PostDetails.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-function PostDetails({ isSignup, setIsSignup }) {
+function PostDetails({ isSignup }) {
   const navigate = useNavigate();
   const { id } = useParams();
-
   const [post, setPost] = useState(null);
   const [popularPosts, setPopularPosts] = useState([]);
-  const [recommendedPosts, setRecommendedPosts] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalImage, setModalImage] = useState("");
 
-  // 게시글 상세 + 사이드바 데이터 불러오기
   useEffect(() => {
-    const fetchAll = async () => {
+    const fetchData = async () => {
       try {
-        const [postRes, popRes, recRes] = await Promise.all([
-          axios.get(`/posts/${id}`),                    // 프록시 사용!
+        const [postRes, popRes] = await Promise.all([
+          axios.get(`/posts/${id}`),
           axios.get("/posts/popular-posts"),
-          axios.get("/posts/recommended-posts"),
         ]);
         setPost(postRes.data);
         setPopularPosts(popRes.data.posts || []);
-        setRecommendedPosts(recRes.data.posts || []);
       } catch (err) {
-        console.error("로드 실패", err);
         alert("게시글을 불러오지 못했습니다.");
       }
     };
-    fetchAll();
+    fetchData();
   }, [id]);
 
-  const formatDate = (dateStr) => {
-    if (!dateStr) return "";
-    const d = new Date(dateStr);
-    return `${d.getFullYear()}.${(d.getMonth() + 1).toString().padStart(2, "0")}.${d.getDate().toString().padStart(2, "0")}`;
+  // 처음에 너가 좋아했던 그 모달 로직 그대로
+  const openModal = (src) => {
+    setModalImage(src);
+    setModalOpen(true);
+    document.body.style.overflow = "hidden";
   };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setModalImage("");
+    document.body.style.overflow = "auto";
+  };
+
+  // ESC 키도 먹히고
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape") closeModal();
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, []);
 
   if (!post) return <div className="loading">불러오는 중...</div>;
 
+  const imageUrl = post.file_path 
+    ? `http://localhost:3000${post.file_path.replace(/^\/+/, "/")}` 
+    : null;
+
   return (
     <>
-      <div className="mainBg">
+      <div className="mainBg postDetails-only">
         <div className="mainBgCircle1"></div>
         <div className="mainBgCircle2"></div>
 
-        {/* 사이드바: 인기/추천 게시글 */}
+        {/* 사이드바 */}
         <div className="postPage-login">
           {isSignup ? (
             <>
-              {/* 인기 게시글 */}
               <div className="contentTitle">인기 게시글</div>
               <Link to="/notice" className="content-notice">
                 <img src="/images/btn-left.png" alt="더보기" />
               </Link>
               <div className="postPage-login-content">
-                {popularPosts.length > 0 ? (
-                  popularPosts.map((p, idx) => (
-                    <Link key={p.post_id} to={`/notice/${p.post_id}`} className="keyword-item">
-                      <div style={{ padding: "10px 0", cursor: "pointer" }}>
-                        {idx + 1}. {p.title}
-                        <span style={{ float: "right", color: "#888", fontSize: "12px" }}>
-                          {formatDate(p.created_at)}
-                        </span>
-                      </div>
-                    </Link>
-                  ))
-                ) : (
-                  <div style={{ color: "#aaa", padding: "20px 0" }}>게시글 없음</div>
-                )}
+                {popularPosts.map((p, idx) => (
+                  <Link key={p.post_id} to={`/notice/${p.post_id}`} className="keyword-item">
+                    <div style={{ padding: "12px 0" }}>
+                      {idx + 1}. {p.title}
+                      <span style={{ float: "right", color: "#888", fontSize: "12px" }}>
+                        {new Date(p.created_at).toLocaleDateString("ko-KR").slice(2, -1)}
+                      </span>
+                    </div>
+                  </Link>
+                ))}
               </div>
             </>
           ) : (
-            // 로그인 유도
             <>
               <div className="contentTitle">로그인 하기</div>
               <div className="postPage-login-content">
-                <button className="postPage-login-btn" onClick={() => navigate("/login")}>
-                  로그인
-                </button>
-                <button className="postPage-singup-btn" onClick={() => navigate("/login")}>
-                  회원가입
-                </button>
+                <button className="postPage-login-btn" onClick={() => navigate("/login")}>로그인</button>
+                <button className="postPage-singup-btn" onClick={() => navigate("/login")}>회원가입</button>
               </div>
             </>
           )}
         </div>
 
-        {/* 게시글 작성 버튼 */}
         <div className="postPage-write">
           <div className="contentTitle">게시글 작성하기</div>
-          <button
-            onClick={() => (isSignup ? navigate("/write") : alert("로그인 해주세요!"))}
-            className="postPage-write-btn"
-          >
+          <button onClick={() => isSignup ? navigate("/write") : alert("로그인 해주세요!")}
+            className="postPage-write-btn">
             게시글 작성하기
           </button>
         </div>
 
         <img className="postPage-img" src="/images/gbs-mascot.png" alt="" />
 
-        {/* 메인 게시글 내용 */}
+        {/* 스케치북 */}
         <div className="postPage-bg">
           <img className="postPage-content-bg" src="/images/postPage-content-bg.png" alt="" />
-          <img className="postPage-content" src="/images/postPage-content.png" alt="" />
+          {/* 이 녀석이 클릭 가로채던 범인 */}
+          <img className="postPage-content" src="/images/postPage-content.png" alt="" style={{ pointerEvents: "none" }} />
 
           <div className="postPage-content-titleBox">
             <p className="postDetail-title">{post.title}</p>
             <div className="postDetail-info-line">
               <span className="postDetail-author">작성자: {post.username}</span>
               <span className="postDetail-lastEdited">
-                최근 수정일: {formatDate(post.updated_at || post.created_at)}
+                최근 수정일: {new Date(post.updated_at || post.created_at).toLocaleDateString("ko-KR").slice(0, -1)}
               </span>
             </div>
             <div className="postDetail-category-box">
-              <p className="postDetail-category">분류: {post.tag || "없음"}</p>
+              <p>분류: {post.tag || "없음"}</p>
             </div>
-
             <div className="postDetail-content-box">
-              <p className="postDetail-content">{post.content}</p>
+              <p>{post.content}</p>
             </div>
 
-            {post.file_path && (
+            {/* 첨부 이미지 – 클릭하면 모달 */}
+            {imageUrl && (
               <img
-                className="postDetail-image"
-                src={`http://localhost:3000${post.file_path}`}
+                src={imageUrl}
                 alt="첨부 이미지"
-                style={{ maxWidth: "100%", marginTop: "20px", borderRadius: "12px" }}
+                className="postDetail-image"
+                onClick={() => openModal(imageUrl)}
               />
             )}
           </div>
         </div>
       </div>
+
+      {/* 너가 처음에 완전 좋아했던 그 모달 */}
+      {modalOpen && (
+        <div className="image-modal" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <span className="modal-close" onClick={closeModal}>×</span>
+            <img src={modalImage} alt="큰 이미지" className="modal-image" />
+          </div>
+        </div>
+      )}
     </>
   );
 }
