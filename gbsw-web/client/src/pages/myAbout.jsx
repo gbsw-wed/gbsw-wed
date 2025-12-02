@@ -75,7 +75,7 @@ const handleProfileChange = async (e) => {
         setProfileImg(`http://localhost:3000/uploads/profile/${res.data.filename}?t=${Date.now()}`);
       }
     } catch (err) {
-      alert("업로드 실패했지만 일단 보이긴 해요");
+      alert("업로드 실패");
       // 실패해도 미리보기는 유지 → UX 최고
     } finally {
       e.target.value = null; // 다음에 같은 사진 또 올릴 수 있게

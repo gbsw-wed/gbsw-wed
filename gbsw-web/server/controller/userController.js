@@ -68,12 +68,27 @@ exports.logout = (req, res) => {
 };
 
 
-exports.check = (req, res) => {
-  const user = req.session ? req.session.user : null;
-  res.json({
-    loggedIn: !!user,
-    user: user || null
-  });
+// userController.js의 check 함수 수정
+exports.check = async (req, res) => {
+  try {
+    if (!req.session?.user) {
+      return res.json({ loggedIn: false, user: null });
+    }
+
+    // DB에서 최신 profile_img 가져오기
+    const row = await userModel.getUserProfileImage(req.session.user.user_id);
+
+    res.json({
+      loggedIn: true,
+      user: {
+        ...req.session.user,
+        profile_img: row?.profile_img || null   // 이거 추가!!!
+      }
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "서버 오류" });
+  }
 };
 
 exports.updateUsername = async (req, res, next) => {
@@ -118,27 +133,21 @@ exports.updatePassword = async (req, res, next) => {
 exports.updateProfileImage = async (req, res) => {
   try {
     const userId = req.session.user?.user_id;
-    if (!userId) {
-      return res.status(401).json({ message: "로그인 필요" });
-    }
+    if (!userId) return res.status(401).json({ message: "로그인 필요" });
 
-    if (!req.file) {
-      return res.status(400).json({ message: "파일이 업로드되지 않았습니다." });
-    }
+    if (!req.file) return res.status(400).json({ message: "파일 없음" });
 
     const fileName = req.file.filename;
+    await userModel.updateProfileImage(userId, fileName);
 
-    const affected = await userModel.updateProfileImage(userId, fileName);
-
-    if (!affected) {
-      return res.status(500).json({ message: "프로필 업데이트 실패" });
-    }
+    // 세션에도 바로 반영 (중요!!!)
+    req.session.user.profile_img = fileName;
 
     return res.json({
       message: "프로필 이미지가 변경되었습니다.",
-      filename: fileName,   // 🔥 프론트에서 필요한 값
+      filename: fileName,
+      profile_img: fileName
     });
-
   } catch (err) {
     console.error(err);
     return res.status(500).json({ message: "서버 오류" });
