@@ -7,3 +7,4 @@ const API = axios.create({
 
 export const signup = (data) => API.post("/users/signup", data);
 export const login = (data) => API.post("/users/login", data);
+//nano로 수정완료

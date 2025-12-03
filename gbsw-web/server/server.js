@@ -44,7 +44,7 @@ app.use((req, res) => {
   res.status(404).json({ message: "페이지를 찾을 수 없습니다." });
 });
 
-// 에러 처리 맞는뎅
+// 에러 처리
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).json({ message: "서버 에러" });
@@ -52,5 +52,5 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
   console.log(`서버 실행 중: http://localhost:${PORT}`);
-  console.log(`로그인하러 가기 : http://localhost:5173/`)
+  console.log(`메인 페이지 : http://localhost:5173/`)
 });

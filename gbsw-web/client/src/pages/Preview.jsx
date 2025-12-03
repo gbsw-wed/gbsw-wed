@@ -1,4 +1,3 @@
-// src/pages/Preview.jsx
 import "./Preview.css";
 import React from "react";
 

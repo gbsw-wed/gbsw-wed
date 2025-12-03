@@ -1,8 +1,8 @@
-// PostDetails.jsx — 너가 제일 좋아했던 그 시절로 돌아감
 import "./PostDetails.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+
 
 function PostDetails({ isSignup }) {
   const navigate = useNavigate();
@@ -121,7 +121,6 @@ function PostDetails({ isSignup }) {
               <p>{post.content}</p>
             </div>
 
-            {/* 첨부 이미지 – 클릭하면 모달 */}
             {imageUrl && (
               <img
                 src={imageUrl}
@@ -134,7 +133,6 @@ function PostDetails({ isSignup }) {
         </div>
       </div>
 
-      {/* 너가 처음에 완전 좋아했던 그 모달 */}
       {modalOpen && (
         <div className="image-modal" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>

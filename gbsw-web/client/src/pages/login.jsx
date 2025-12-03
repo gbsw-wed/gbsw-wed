@@ -14,7 +14,6 @@ export default function LoginPage() {
     const location = useLocation();
     const navigate = useNavigate();
 
-    // URL 감지해서 회원가입 모드 여부 결정
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         const mode = params.get("mode");
@@ -25,7 +24,6 @@ export default function LoginPage() {
         setFade(true);
     };
 
-    // 애니메이션 후 폼 전환
     useEffect(() => {
         if (fade) {
             const timeout = setTimeout(() => {
@@ -51,13 +49,11 @@ export default function LoginPage() {
     
             alert(res.data.message);
     
-            // 폼 초기화
             setUsername("");
             setPassword("");
             setCheckPassword("");
             setStudentId("");
     
-            // 회원가입 모드 유지
             setIsSignup(true);
             window.history.replaceState(null, "", "/login?mode=signup");
     
@@ -70,7 +66,7 @@ export default function LoginPage() {
     const handleLogin = async () => {
         try {
             await login({ username, password });
-            navigate("/"); // 로그인 성공 시 메인으로 이동
+            navigate("/"); 
         } catch (err) {
             alert(err.response?.data?.message || "로그인 실패");
         }

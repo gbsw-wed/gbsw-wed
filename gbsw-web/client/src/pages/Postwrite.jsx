@@ -71,8 +71,8 @@ useEffect(() => {
   const fetchData = async () => {
     try {
       const [popRes, recRes] = await Promise.all([
-        axios.get("/posts/popular-posts"),     // 여기 수정
-        axios.get("/posts/recommended-posts"), // 여기 수정
+        axios.get("/posts/popular-posts"),     
+        axios.get("/posts/recommended-posts"), 
       ]);
       setPopularPosts(popRes.data.posts || []);
       setRecommendedPosts(recRes.data.posts || []);

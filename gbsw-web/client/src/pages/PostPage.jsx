@@ -20,7 +20,6 @@ function PostPage({ isSignup, setIsSignup }) {
 
   const sortMode = searchParams.get("sort") || "latest";
 
-  // 인기/추천 게시글 불러오기
   useEffect(() => {
     const fetchSidePosts = async () => {
       try {
@@ -41,7 +40,7 @@ function PostPage({ isSignup, setIsSignup }) {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        let url = "/posts";  // proxy 사용 중이라면 이렇게만!
+        let url = "/posts";  
         const params = new URLSearchParams();
         if (keyword) params.set("keyword", keyword);
         if (sortMode === "popular") params.set("sort", "views");
@@ -84,11 +83,9 @@ function PostPage({ isSignup, setIsSignup }) {
       <div className="mainBgCircle1"></div>
       <div className="mainBgCircle2"></div>
 
-      {/* 사이드바: 로그인 or 인기/추천 게시글 */}
       <div className="postPage-login">
         {isSignup ? (
           <>
-            {/* 인기 게시글 */}
             <div className="contentTitle">인기 게시글</div>
             <Link to="/notice" className="content-notice">
               <img src="/images/btn-left.png" alt="더보기" />
@@ -111,7 +108,6 @@ function PostPage({ isSignup, setIsSignup }) {
             </div>
           </>
         ) : (
-          // 로그인 
           <>
             <div className="contentTitle">로그인 하기</div>
             <div className="postPage-login-content">
@@ -127,7 +123,6 @@ function PostPage({ isSignup, setIsSignup }) {
         )}
       </div>
 
-      {/* 게시글 작성 버튼 */}
       <div className="postPage-write">
         <div className="contentTitle">게시글 작성하기</div>
         <button
@@ -142,7 +137,6 @@ function PostPage({ isSignup, setIsSignup }) {
 
       <img className="postPage-img" src="/images/gbs-mascot.png" alt="" />
 
-      {/* 정렬 버튼 */}
       <div style={{ textAlign: "center", margin: "20px 0" }}>
         <button onClick={() => handleSort("latest")} className={`sort-btn ${sortMode === "latest" ? "active" : ""}`}>
           최신순
@@ -155,7 +149,6 @@ function PostPage({ isSignup, setIsSignup }) {
         </button>
       </div>
 
-      {/* 게시글 리스트 */}
       <div className="postPage-bg">
         <img className="postPage-content-bg" src="/images/postPage-content-bg.png" alt="" />
         <img className="postPage-content" src="/images/postPage-content.png" alt="" />
@@ -173,7 +166,6 @@ function PostPage({ isSignup, setIsSignup }) {
           />
         </div>
 
-        {/* 페이지네이션 */}
         <div className="postPage-content-nextBtn">
           <button onClick={() => pageOffset > 0 && setPageOffset(pageOffset - 3)}>
             <img src="/images/btn-top.png" alt="이전" />

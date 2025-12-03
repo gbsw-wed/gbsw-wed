@@ -13,7 +13,7 @@ function NavarPage({ isSignup }) {
 
   const handleSearch = () => {
     if (!keyword.trim()) return;
-    navigate(`/posts/search/${keyword}`);   // PostPage에서 이 값으로 검색함
+    navigate(`/posts/search/${keyword}`);   
   };
 
   return (
@@ -30,7 +30,7 @@ function NavarPage({ isSignup }) {
           <Form
             className="d-flex searchBar"
             onSubmit={(e) => {
-              e.preventDefault();  // 새로고침 방지
+              e.preventDefault();  
               handleSearch();
             }}
           >

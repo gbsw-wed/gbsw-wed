@@ -39,12 +39,11 @@ function MyAbout() {
           stuNum: user.stuNum || "미등록",
         });
   
-        // 이 부분만 이렇게 바꾸세요!!!
         const savedImg = user.profile_img?.trim();
         if (savedImg && savedImg !== "" && savedImg !== "null" && savedImg !== "undefined") {
           setProfileImg(`http://localhost:3000/uploads/profile/${savedImg}?t=${Date.now()}`);
         } else {
-          setProfileImg("/images/gbs-mascot.png");  // ← 이 줄이 생명이에요!!!
+          setProfileImg("/images/gbs-mascot.png");  
         }
       } catch (err) {
         console.log("프로필 로드 실패 → 기본 이미지");
@@ -54,12 +53,10 @@ function MyAbout() {
     fetchProfile();
   }, []);
 
-// MyAbout.jsx의 handleProfileChange만 이걸로 통째로 바꾸세요
 const handleProfileChange = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
   
-    // 1. 즉시 미리보기 (게시글 쓰는 페이지처럼!)
     setProfileImg(URL.createObjectURL(file));
   
     const formData = new FormData();
@@ -71,14 +68,12 @@ const handleProfileChange = async (e) => {
       });
   
       if (res.data.filename) {
-        // 2. 성공하면 진짜 URL로 교체 (새로고침해도 유지됨)
         setProfileImg(`http://localhost:3000/uploads/profile/${res.data.filename}?t=${Date.now()}`);
       }
     } catch (err) {
       alert("업로드 실패");
-      // 실패해도 미리보기는 유지 → UX 최고
     } finally {
-      e.target.value = null; // 다음에 같은 사진 또 올릴 수 있게
+      e.target.value = null; 
     }
   };
 
@@ -119,7 +114,6 @@ const handleProfileChange = async (e) => {
     }
   };
 
-  // 로그아웃 추가!!!
   const handleLogout = async () => {
     if (!window.confirm("로그아웃 하시겠습니까?")) return;
     try {
@@ -175,7 +169,6 @@ const handleProfileChange = async (e) => {
           </div>
         </div>
 
-        {/* 로그아웃 버튼 복구!!! */}
         <button className="myAbout-logout" onClick={handleLogout} style={{ marginTop: "15px" }}>
           로그아웃
         </button>
@@ -266,3 +259,5 @@ const handleProfileChange = async (e) => {
 }
 
 export default MyAbout;
+
+//nano로 수정완료
