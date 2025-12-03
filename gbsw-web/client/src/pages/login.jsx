@@ -49,7 +49,7 @@ export default function LoginPage({ isSignup, setIsSignup }) {
         try {
             const res = await login({ username, password });
 
-            window.location.href = "/notice";
+            window.location.href = "/";
         } catch (err) {
             alert(err.response?.data?.message || "로그인 실패");
         }
