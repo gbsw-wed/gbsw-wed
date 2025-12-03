@@ -155,14 +155,14 @@ exports.updateProfileImage = async (req, res) => {
 };
 
 
-
 exports.deleteAccount = async (req, res, next) => {
   try {
-    const userId = req.session.user.user_id;
+    const userId = req.session.user?.user_id; // 숫자
 
     if (!userId) return res.status(401).json({ message: "로그인 필요" });
 
-    await userModel.softDeleteUser(userId.user_id);
+    // 여기 수정!!!
+    await userModel.softDeleteUser(userId);
 
     req.session.destroy(() => {
       res.clearCookie("connect.sid");

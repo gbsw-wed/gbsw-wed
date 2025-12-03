@@ -118,10 +118,11 @@ function PostPage({ isSignup, setIsSignup }) {
               <button className="postPage-login-btn" onClick={() => navigate("/login")}>
                 로그인
               </button>
-              <button className="postPage-singup-btn" onClick={() => navigate("/login")}>
+              <button className="postPage-singup-btn" onClick={() => navigate("/login?mode=signup")}>
                 회원가입
               </button>
             </div>
+
           </>
         )}
       </div>

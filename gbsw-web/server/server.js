@@ -52,5 +52,5 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
   console.log(`서버 실행 중: http://localhost:${PORT}`);
-  console.log(`로그인하러 가기 : http://localhost:5173/login`)
+  console.log(`로그인하러 가기 : http://localhost:5173/`)
 });
